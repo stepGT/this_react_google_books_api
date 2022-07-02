@@ -7,9 +7,10 @@ const BookItem = ({ ...props }) => <div>{props.volumeInfo.title}</div>;
 
 const Home = () => {
   const { objects, status } = useSelector(selectorBooks);
+  const searchValue = useSelector((state) => state.search.searchValue);
   const dispatch = useDispatch();
   const getBooks = async () => {
-    dispatch(fetchBooks({ query: 'react' }));
+    dispatch(fetchBooks({ query:  searchValue }));
   };
   useEffect(() => {
     getBooks();
