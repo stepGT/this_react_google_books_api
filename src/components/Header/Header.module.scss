@@ -7,4 +7,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+}
+
+.form {
+}
+
+.search_text {
+  color: white;
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding-bottom: 10px;
+}
+
+.form_select, .form_input {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.form_input {
+  margin-bottom: 15px;
+}
+
+.form_select {
+  color: #fff;
 }

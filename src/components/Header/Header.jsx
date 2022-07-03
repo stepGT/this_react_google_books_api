@@ -19,11 +19,15 @@ const Header = () => {
   };
   return (
     <div className={styles.header}>
-      <div>Search for books</div>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <Input />
-        <Select arrOptions={categories} label="Categories" />
-        <Select arrOptions={sortBy} label="Sorting by" />
+      <div className={styles.search_text}>Search for books</div>
+      <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
+        <div className={styles.form_input}>
+          <Input />
+        </div>
+        <div className={styles.form_select}>
+          <Select arrOptions={categories} label="Categories" />
+          <Select arrOptions={sortBy} label="Sorting by" />
+        </div>
       </form>
     </div>
   );
