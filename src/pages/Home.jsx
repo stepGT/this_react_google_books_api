@@ -2,8 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBooks } from '@redux/features/booksSlice';
 import { selectorBooks } from '@redux/features/booksSlice';
-
-const BookItem = ({ ...props }) => <div>{props.volumeInfo.title}</div>;
+import BookItem from '@components/BookItem';
 
 const Home = () => {
   const { objects, status } = useSelector(selectorBooks);
