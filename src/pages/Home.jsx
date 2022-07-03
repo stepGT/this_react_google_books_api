@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchBooks } from '@redux/features/booksSlice';
 import { selectorBooks } from '@redux/features/booksSlice';
 import BookItem from '@components/BookItem';
+import styles from './Home.module.scss';
 
 const Home = () => {
   const { objects, status } = useSelector(selectorBooks);
@@ -17,7 +18,7 @@ const Home = () => {
 
   return (
     <div className="container">
-      <div className="content__items">
+      <div className={styles.content_items}>
         {status === 'pending'
           ? 'Loading'
           : objects.items.map((el) => <BookItem key={el.id} {...el} />)}

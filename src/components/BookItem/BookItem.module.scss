@@ -1,23 +1,39 @@
 .wrapper {
   display: flex;
   justify-content: center;
+  padding: 15px 15px;
+  background: #f4f2f2;
+  margin: 30px auto;
+  border-radius: 10px;
+}
+
+.wrapper div,
+.wrapper h1 {
+  margin: 10px auto;
 }
 
 .block {
-    width: 300px;
-    margin-bottom: 65px;
+  width: 254px;
+  margin: 0 auto;
 }
 
 .image {
-    width: 280px;
-    border: 1px red solid;
+  width: 128px;
+  margin: 10px auto;
+  text-align: center;
 }
 
 .categories {
-    color: #ccc;
-    text-decoration: underline;
+  color: #c0bec0;
+  text-decoration: underline;
 }
 
-.title {}
+.title {
+  font-size: 18px;
+}
 
-.authors {}
+.authors {
+  font-size: 14px;
+  font-weight: normal;
+  color: #c0bec0;
+}
