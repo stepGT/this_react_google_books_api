@@ -39,3 +39,16 @@
   font-weight: normal;
   color: #c0bec0;
 }
+
+.link {
+  margin: 10px auto;
+}
+
+.button {
+  border: 1px #000 solid;
+  border-radius: 10px;
+  min-width: 100px;
+  min-height: 30px;
+  text-align: center;
+  cursor: pointer;
+}

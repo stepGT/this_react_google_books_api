@@ -9,6 +9,7 @@ module.exports = {
       '@layouts': resolvePath('./src/layouts'),
       '@scss': resolvePath('./src/scss'),
       '@redux': resolvePath('./src/redux'),
+      '@pages': resolvePath('./src/pages'),
     },
   },
 };
