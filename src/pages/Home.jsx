@@ -20,6 +20,9 @@ const Home = () => {
 
   return (
     <div className="container">
+      <div className={styles.totalItems}>
+        {status !== 'pending' && <div>Found {objects.totalItems} results</div>}
+      </div>
       <div className={styles.content_items}>
         {status === 'pending'
           ? skeletons
