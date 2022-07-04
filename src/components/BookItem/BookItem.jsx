@@ -2,13 +2,18 @@ import { Link } from 'react-router-dom';
 import styles from './BookItem.module.scss';
 
 const BookItem = ({ id, volumeInfo: { title, imageLinks, authors, categories }, link }) => {
+  const thumbnail = imageLinks?.thumbnail ? imageLinks?.thumbnail : 'https://dummyimage.com/128x200/ccc/000';
   return (
     <div className={styles.wrapper}>
       <div className={styles.block}>
         <div className={styles.image}>
-          <Link to={`${id}`}>
-            <img src={imageLinks?.thumbnail} alt={title} />
-          </Link>
+          {!link ? (
+            <Link to={`${id}`}>
+              <img src={thumbnail} alt={title} />
+            </Link>
+          ) : (
+            <img src={thumbnail} alt={title} />
+          )}
         </div>
         <div className={styles.categories}>{categories?.[0]}</div>
         <h1 className={styles.title}>{title}</h1>
