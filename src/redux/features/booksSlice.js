@@ -9,9 +9,19 @@ export const fetchBooks = createAsyncThunk('books/fetchBooks', async (params) =>
   return data;
 });
 
+export const fetchBookByID = createAsyncThunk('books/fetchBookByID', async (params) => {
+  const { id } = params;
+  const { data } = await axios.get(`${process.env.REACT_APP_GOOGLEAPIS_BOOKS_V1}/${id}`);
+  return data;
+});
+
 const initialState = {
   objects: {},
   status: 'pending', // pending | fulfilled | rejected
+  object: {
+    item: {},
+    status: 'pending',
+  },
 };
 
 export const booksSlice = createSlice({
@@ -33,10 +43,26 @@ export const booksSlice = createSlice({
       state.status = 'rejected';
       state.objects = {};
     });
+
+    // Add reducers for additional action types here, and handle loading state as needed
+    builder.addCase(fetchBookByID.pending, (state) => {
+      state.object.status = 'pending';
+      state.object = {};
+    });
+    builder.addCase(fetchBookByID.fulfilled, (state, action) => {
+      // Add book to the state array
+      state.object.item = action.payload;
+      state.object.status = 'fulfilled';
+    });
+    builder.addCase(fetchBookByID.rejected, (state) => {
+      state.object.status = 'rejected';
+      state.object = {};
+    });
   },
 });
 
 export const selectorBooks = (state) => state.books;
+export const selectorBookByID = (state) => state.books.object;
 
 // Action creators are generated for each case reducer function
 export const {} = booksSlice.actions;
