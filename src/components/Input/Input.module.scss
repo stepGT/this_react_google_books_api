@@ -1,0 +1,16 @@
+.wrapper {
+  position: relative;
+}
+
+.submit {
+  width: 1rem;
+  position: relative;
+  top: 4px;
+  right: 20px;
+  border: 0;
+  background: url('../../assets/img/search_icon.svg') no-repeat scroll 0 0 transparent;
+  cursor: pointer;
+}
+
+.input {
+}
