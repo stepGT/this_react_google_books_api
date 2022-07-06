@@ -24,10 +24,13 @@ const Header = () => {
   const handleSortBy = (e) => {
     dispatch(setOrderBy(e));
     dispatch(fetchBooks({ q, orderBy: e }));
+    navigate('/');
   };
   const handleCategories = (e) => {
-    dispatch(setQ('subject:' + e));
-    dispatch(fetchBooks({ q: 'subject:' + e, orderBy }));
+    const q = e.includes('all') ? e : 'subject:' + e;
+    dispatch(setQ(q));
+    dispatch(fetchBooks({ q, orderBy }));
+    navigate('/');
   };
   return (
     <div className={styles.header}>
