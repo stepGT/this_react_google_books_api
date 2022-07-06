@@ -8,7 +8,7 @@ import Skeleton from '@components/BookItem/Skeleton';
 import Error from '@components/Error';
 
 const Home = () => {
-  const searchValue = useSelector((state) => state.search.searchValue);
+  const { q, orderBy } = useSelector((state) => state.search);
   const dispatch = useDispatch();
   const skeletons = [...new Array(5)].map((_, ind) => <Skeleton key={ind} />);
   const {
@@ -18,7 +18,7 @@ const Home = () => {
   } = useSelector(selectorBooks);
 
   useEffect(() => {
-    dispatch(fetchBooks({ query: searchValue }));
+    dispatch(fetchBooks({ q, orderBy }));
   }, []);
   if (error !== null) return <Error text={error} />;
   return (
@@ -27,7 +27,7 @@ const Home = () => {
         {status !== 'pending' && <div>Found {totalItems} results</div>}
       </div>
       <div className={styles.content_items}>
-        {status === 'pending' ? skeletons : items.map((el) => <BookItem key={el.id} {...el} />)}
+        {status === 'pending' ? skeletons : items.map((el) => <BookItem key={el.etag} {...el} />)}
       </div>
     </div>
   );

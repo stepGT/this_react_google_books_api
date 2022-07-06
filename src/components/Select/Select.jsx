@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import styles from './Select.module.scss';
 
-const Select = ({ label = 'Categories', arrOptions = ['', '', ''] }) => {
+const Select = ({ label = 'Categories', arrOptions = [], handleFilter }) => {
   const [selectValue, setSelectValue] = useState('');
-  const changeSelect = (e) => setSelectValue(e.target.value);
+  const changeSelect = (e) => {
+    setSelectValue(e.target.value);
+    handleFilter(e.target.value);
+  };
   const options = arrOptions.map((el, ind) => {
     return (
-      <option key={ind} value={ind}>
+      <option key={ind} value={el}>
         {el}
       </option>
     );

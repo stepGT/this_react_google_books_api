@@ -4,10 +4,10 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 export const fetchBooks = createAsyncThunk(
   'books/fetchBooks',
   async (params, { rejectWithValue, fulfillWithValue }) => {
-    const { query } = params;
+    const { q, orderBy } = params;
     try {
       const { data } = await axios.get(
-        `${process.env.REACT_APP_GOOGLEAPIS_BOOKS_V1}?q=${query}&startIndex=0&maxResults=5&key=${process.env.REACT_APP_GOOGLE_BOOKS_API_KEY}`,
+        `${process.env.REACT_APP_GOOGLEAPIS_BOOKS_V1}?q=${q}&orderBy=${orderBy}&startIndex=0&maxResults=5&key=${process.env.REACT_APP_GOOGLE_BOOKS_API_KEY}`,
       );
       return fulfillWithValue(data);
     } catch (error) {
