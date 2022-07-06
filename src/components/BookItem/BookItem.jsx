@@ -8,7 +8,7 @@ const BookItem = ({ id, volumeInfo: { title, imageLinks, authors, categories }, 
       <div className={styles.block}>
         <div className={styles.image}>
           {!link ? (
-            <Link to={`${id}`}>
+            <Link to={`book/${id}`}>
               <img src={thumbnail} alt={title} />
             </Link>
           ) : (
