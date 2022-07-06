@@ -1,0 +1,23 @@
+.content_items {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  @media (max-width: 1440px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.totalItems {
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 10px;
+  min-height: 24px;
+}

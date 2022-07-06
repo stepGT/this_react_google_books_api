@@ -1,0 +1,54 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 15px 15px;
+  background: #f4f2f2;
+  margin: 30px auto;
+  border-radius: 10px;
+}
+
+.wrapper div,
+.wrapper h1 {
+  margin: 10px auto;
+}
+
+.block {
+  width: 254px;
+  margin: 0 auto;
+}
+
+.image {
+  width: 128px;
+  min-height: 200px;
+  margin: 10px auto;
+  text-align: center;
+}
+
+.categories {
+  font-size: .7rem;
+  color: #c0bec0;
+  text-decoration: underline;
+}
+
+.title {
+  font-size: 1rem;
+}
+
+.authors {
+  font-size: .7rem;
+  font-weight: normal;
+  color: #c0bec0;
+}
+
+.link {
+  margin: 10px auto;
+}
+
+.button {
+  border: 1px #000 solid;
+  border-radius: 10px;
+  min-width: 100px;
+  min-height: 30px;
+  text-align: center;
+  cursor: pointer;
+}

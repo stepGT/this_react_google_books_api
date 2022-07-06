@@ -1,9 +1,10 @@
 import { Outlet } from 'react-router-dom';
 import Header from '@components/Header';
+import styles from '@scss/App.module.scss';
 
 const MainLayout = () => {
   return (
-    <div className="wrapper">
+    <div className={styles.wrapper}>
       <Header />
       <div className="content">
         <Outlet />

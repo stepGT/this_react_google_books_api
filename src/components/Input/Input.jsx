@@ -9,13 +9,19 @@ const Input = () => {
   const handleChange = (e) => {
     setValue(e.target.value);
     dispatch(setSearchValue(e.target.value));
-  }
+  };
 
   return (
-    <div className={styles.input}>
+    <div className={styles.wrapper}>
       <label htmlFor="inputValue"></label>
-      <input id="inputValue" type="text" value={value} onChange={(e) => handleChange(e)} />
-      <input type="submit" value="Submit" />
+      <input
+        className={styles.input}
+        id="inputValue"
+        type="text"
+        value={value}
+        onChange={(e) => handleChange(e)}
+      />
+      <input className={styles.submit} type="submit" value="" />
     </div>
   );
 };
