@@ -12,7 +12,7 @@ const sortBy = ['relevance', 'newest'];
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { q } = useSelector((state) => state.search);
+  const { q, orderBy } = useSelector((state) => state.search);
   const handleSubmit = (e) => {
     e.preventDefault();
     const currentValue = e.currentTarget.elements[0].value;
@@ -25,6 +25,10 @@ const Header = () => {
     dispatch(setOrderBy(e));
     dispatch(fetchBooks({ q, orderBy: e }));
   };
+  const handleCategories = (e) => {
+    dispatch(setQ('subject:' + e));
+    dispatch(fetchBooks({ q: 'subject:' + e, orderBy }));
+  };
   return (
     <div className={styles.header}>
       <div className={styles.search_text}>Search for books</div>
@@ -33,7 +37,7 @@ const Header = () => {
           <Input />
         </div>
         <div className={styles.form_select}>
-          <Select handleFilter={() => {}} arrOptions={categories} label="Categories" />
+          <Select handleFilter={handleCategories} arrOptions={categories} label="Categories" />
           <Select handleFilter={handleSortBy} arrOptions={sortBy} label="Sorting by" />
         </div>
       </form>
