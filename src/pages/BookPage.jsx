@@ -4,21 +4,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchBookByID } from '@redux/features/booksSlice';
 import { selectorBookByID } from '@redux/features/booksSlice';
 import BookItem from '@components/BookItem/BookItem';
+import Error from '@components/Error';
 
 const BookPage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const object = useSelector(selectorBookByID);
-  const getBooks = async () => dispatch(fetchBookByID({ id }));
+  const {
+    data: { volumeInfo },
+    status,
+    error,
+  } = useSelector(selectorBookByID);
   useEffect(() => {
-    try {
-      getBooks();
-    } catch (error) {
-      alert('Ошибка при получении книги!');
-    }
+    dispatch(fetchBookByID({ id }));
   }, []);
-
-  return object.status === 'fulfilled' && <BookItem id={id} volumeInfo={object.item.volumeInfo} link={true} />;
+  if (error !== null) return <Error text={error} />;
+  return status === 'fulfilled' && <BookItem id={id} volumeInfo={volumeInfo} link={true} />;
 };
 
 export default BookPage;
