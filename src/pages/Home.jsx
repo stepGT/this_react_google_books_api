@@ -6,6 +6,8 @@ import BookItem from '@components/BookItem';
 import styles from './Home.module.scss';
 import Skeleton from '@components/BookItem/Skeleton';
 import Error from '@components/Error';
+import Button from '@components/Button';
+import LoadMore from '@components/LoadMore';
 
 const Home = () => {
   const { q, orderBy } = useSelector((state) => state.search);
@@ -17,6 +19,9 @@ const Home = () => {
     error,
   } = useSelector(selectorBooks);
 
+  const onClickHandler = (e) => {
+    dispatch(fetchBooks({ q, orderBy }));
+  };
   useEffect(() => {
     dispatch(fetchBooks({ q, orderBy }));
   }, []);
@@ -29,6 +34,9 @@ const Home = () => {
       <div className={styles.content_items}>
         {status === 'pending' ? skeletons : items.map((el) => <BookItem key={el.etag} {...el} />)}
       </div>
+      <LoadMore>
+        <Button onClickHandler={onClickHandler} text="load more" />
+      </LoadMore>
     </div>
   );
 };
