@@ -10,6 +10,7 @@ module.exports = {
       '@scss': resolvePath('./src/scss'),
       '@redux': resolvePath('./src/redux'),
       '@pages': resolvePath('./src/pages'),
+      '@api': resolvePath('./src/api'),
     },
   },
 };

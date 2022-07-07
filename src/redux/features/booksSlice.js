@@ -4,10 +4,10 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 export const fetchBooks = createAsyncThunk(
   'books/fetchBooks',
   async (params, { rejectWithValue, fulfillWithValue }) => {
-    const { q, orderBy } = params;
+    const { q, orderBy, startIndex, maxResults } = params;
     try {
       const { data } = await axios.get(
-        `${process.env.REACT_APP_GOOGLEAPIS_BOOKS_V1}?q=${q}&orderBy=${orderBy}&startIndex=0&maxResults=5&key=${process.env.REACT_APP_GOOGLE_BOOKS_API_KEY}`,
+        `${process.env.REACT_APP_GOOGLEAPIS_BOOKS_V1}?q=${q}&orderBy=${orderBy}&startIndex=${startIndex}&maxResults=${maxResults}&key=${process.env.REACT_APP_GOOGLE_BOOKS_API_KEY}`,
       );
       return fulfillWithValue(data);
     } catch (error) {
@@ -45,7 +45,11 @@ const initialState = {
 export const booksSlice = createSlice({
   name: 'books',
   initialState,
-  reducers: {},
+  reducers: {
+    loadMore(state, action) {
+      state.objects.data.items.push(...action.payload);
+    },
+  },
   extraReducers: (builder) => {
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(fetchBooks.pending, (state) => {
@@ -85,6 +89,6 @@ export const selectorBooks = (state) => state.books.objects;
 export const selectorBookByID = (state) => state.books.object;
 
 // Action creators are generated for each case reducer function
-export const {} = booksSlice.actions;
+export const { loadMore } = booksSlice.actions;
 
 export default booksSlice.reducer;

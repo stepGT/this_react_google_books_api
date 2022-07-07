@@ -12,24 +12,24 @@ const sortBy = ['relevance', 'newest'];
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { q, orderBy } = useSelector((state) => state.search);
+  const { q, orderBy, startIndex, maxResults } = useSelector((state) => state.search);
   const handleSubmit = (e) => {
     e.preventDefault();
     const currentValue = e.currentTarget.elements[0].value;
     const searchValue = currentValue === '' ? 'all' : currentValue;
-    dispatch(fetchBooks({ q: searchValue, orderBy: e.currentTarget.elements[3].value }));
+    dispatch(fetchBooks({ q: searchValue, orderBy, startIndex, maxResults }));
     dispatch(setQ(searchValue));
     navigate('/');
   };
   const handleSortBy = (e) => {
     dispatch(setOrderBy(e));
-    dispatch(fetchBooks({ q, orderBy: e }));
+    dispatch(fetchBooks({ q, orderBy: e, startIndex, maxResults }));
     navigate('/');
   };
   const handleCategories = (e) => {
     const q = e.includes('all') ? e : 'subject:' + e;
     dispatch(setQ(q));
-    dispatch(fetchBooks({ q, orderBy }));
+    dispatch(fetchBooks({ q, orderBy, startIndex, maxResults }));
     navigate('/');
   };
   return (
