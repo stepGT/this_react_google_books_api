@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Button from '@components/Button';
 import styles from './BookItem.module.scss';
 
 const BookItem = ({ id, volumeInfo: { title, imageLinks, authors, categories }, link }) => {
@@ -21,9 +22,7 @@ const BookItem = ({ id, volumeInfo: { title, imageLinks, authors, categories }, 
         <div className={styles.link}>
           {link && (
             <Link to="/">
-              <button className={styles.button}>
-                <span>Назад</span>
-              </button>
+              <Button text="Назад" />
             </Link>
           )}
         </div>
