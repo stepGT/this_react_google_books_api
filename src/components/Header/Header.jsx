@@ -1,6 +1,6 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setSearchValue } from '@redux/features/searchSlice';
+import { setQ, setOrderBy } from '@redux/features/searchSlice';
 import { fetchBooks } from '@redux/features/booksSlice';
 import Input from '@components/Input';
 import Select from '@components/Select';
@@ -12,12 +12,24 @@ const sortBy = ['relevance', 'newest'];
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { q, orderBy, startIndex, maxResults } = useSelector((state) => state.search);
   const handleSubmit = (e) => {
     e.preventDefault();
     const currentValue = e.currentTarget.elements[0].value;
     const searchValue = currentValue === '' ? 'all' : currentValue;
-    dispatch(fetchBooks({ query: searchValue }));
-    dispatch(setSearchValue(searchValue));
+    dispatch(fetchBooks({ q: searchValue, orderBy, startIndex, maxResults }));
+    dispatch(setQ(searchValue));
+    navigate('/');
+  };
+  const handleSortBy = (e) => {
+    dispatch(setOrderBy(e));
+    dispatch(fetchBooks({ q, orderBy: e, startIndex, maxResults }));
+    navigate('/');
+  };
+  const handleCategories = (e) => {
+    const q = e.includes('all') ? e : 'subject:' + e;
+    dispatch(setQ(q));
+    dispatch(fetchBooks({ q, orderBy, startIndex, maxResults }));
     navigate('/');
   };
   return (
@@ -28,8 +40,8 @@ const Header = () => {
           <Input />
         </div>
         <div className={styles.form_select}>
-          <Select arrOptions={categories} label="Categories" />
-          <Select arrOptions={sortBy} label="Sorting by" />
+          <Select handleFilter={handleCategories} arrOptions={categories} label="Categories" />
+          <Select handleFilter={handleSortBy} arrOptions={sortBy} label="Sorting by" />
         </div>
       </form>
     </div>

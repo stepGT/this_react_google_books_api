@@ -1,15 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  searchValue: 'all',
+  q: 'all',
+  orderBy: 'relevance',
+  startIndex: 0,
+  maxResults: 30,
 };
 
 export const searchSlice = createSlice({
   name: 'search',
   initialState,
   reducers: {
-    setSearchValue(state, action) {
-      state.searchValue = action.payload;
+    setQ(state, action) {
+      state.q = action.payload;
+    },
+    setOrderBy(state, action) {
+      state.orderBy = action.payload;
+    },
+    setParams(state, action) {
+      state.startIndex = action.payload.startIndex + 1;
     },
   },
 });
@@ -17,6 +26,6 @@ export const searchSlice = createSlice({
 export const selectorSearch = (state) => state.search;
 
 // Action creators are generated for each case reducer function
-export const { setSearchValue } = searchSlice.actions;
+export const { setQ, setOrderBy, setParams } = searchSlice.actions;
 
 export default searchSlice.reducer;
