@@ -4,7 +4,7 @@ import Button from '@components/Button';
 import styles from './BookItem.module.scss';
 
 type BookItemProps = {
-  id: any;
+  id: string;
   volumeInfo: {
     title: string;
     imageLinks: {
