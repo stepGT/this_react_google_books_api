@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setQ, setOrderBy } from '@redux/features/searchSlice';
@@ -9,7 +10,7 @@ import styles from './Header.module.scss';
 const categories = ['all', 'art', 'biography', 'computers', 'history', 'medical', 'poetry'];
 const sortBy = ['relevance', 'newest'];
 
-const Header = () => {
+const Header: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { q, orderBy, startIndex, maxResults } = useSelector((state) => state.search);

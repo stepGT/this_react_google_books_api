@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchBooks, selectorBooks, loadMore } from '@redux/features/booksSlice';
 import { setParams } from '@redux/features/searchSlice';
@@ -10,7 +10,7 @@ import Button from '@components/Button';
 import LoadMore from '@components/LoadMore';
 import { fetchBooksLoadMore } from '@api/BooksService';
 
-const Home = () => {
+const Home: FC = () => {
   const { q, orderBy, startIndex, maxResults } = useSelector((state) => state.search);
   const dispatch = useDispatch();
   const skeletons = [...new Array(maxResults)].map((_, ind) => <Skeleton key={ind} />);
