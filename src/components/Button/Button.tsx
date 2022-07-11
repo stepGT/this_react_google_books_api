@@ -1,6 +1,13 @@
+import { FC } from 'react';
 import styles from './Button.module.scss';
 
-const Button = ({ text, disabled = false, onClickHandler }) => {
+type ButtonProps = {
+  text: string;
+  disabled: boolean;
+  onClickHandler: any;
+};
+
+const Button: FC<ButtonProps> = ({ text, disabled = false, onClickHandler }) => {
   return (
     <div className={styles.wrapper}>
       <button

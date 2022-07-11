@@ -1,6 +1,11 @@
+import { FC } from 'react';
 import styles from './Error.module.scss';
 
-const Error = ({ text }) => {
+type ErrorProps = {
+  text: string;
+};
+
+const Error: FC<ErrorProps> = ({ text }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.text}>Error: {text}</div>

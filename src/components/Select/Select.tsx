@@ -1,7 +1,14 @@
+import { FC } from 'react';
 import { useState } from 'react';
 import styles from './Select.module.scss';
 
-const Select = ({ label = 'Categories', arrOptions = [], handleFilter }) => {
+type SelectProps = {
+  label: string;
+  arrOptions: string[];
+  handleFilter: any;
+}
+
+const Select: FC<SelectProps> = ({ label, arrOptions = [], handleFilter }) => {
   const [selectValue, setSelectValue] = useState('');
   const changeSelect = (e) => {
     setSelectValue(e.target.value);
