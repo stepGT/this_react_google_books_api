@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
+import classnames from 'classnames';
 import Button from '@components/Button';
 import styles from './BookItem.module.scss';
 
@@ -14,6 +15,7 @@ type BookItemProps = {
     categories: string[];
   };
   link: string;
+  isPage: boolean;
 };
 
 const BookItem: FC<BookItemProps> = ({
@@ -21,11 +23,12 @@ const BookItem: FC<BookItemProps> = ({
   volumeInfo: { title, imageLinks, authors, categories },
   link,
 }) => {
+  let className = classnames(styles.wrapper, { [styles.isPage]: link });
   const thumbnail = imageLinks?.thumbnail
     ? imageLinks?.thumbnail
     : 'https://dummyimage.com/128x200/ccc/000';
   return (
-    <div className={styles.wrapper}>
+    <div className={className}>
       <div className={styles.block}>
         <div className={styles.image}>
           {!link ? (
