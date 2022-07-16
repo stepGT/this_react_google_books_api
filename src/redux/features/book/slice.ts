@@ -6,6 +6,7 @@ const initialState: TBookSlice = {
   items: [],
   status: '',
   error: null,
+  totalItems: 0,
 };
 
 export const booksSlice = createSlice({
@@ -26,6 +27,7 @@ export const booksSlice = createSlice({
     builder.addCase(fetchBooks.fulfilled, (state, action) => {
       // Add books to the state array
       state.items = action.payload.items;
+      state.totalItems = action.payload.totalItems;
       state.status = EStatusBook.FULFILLED;
       state.error = null;
     });

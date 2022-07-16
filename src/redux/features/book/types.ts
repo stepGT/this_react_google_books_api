@@ -3,6 +3,7 @@ export type TBookSlice = {
   items: TBookItem[];
   status: string;
   error: any;
+  totalItems: number;
 };
 
 export type TBookItem = {

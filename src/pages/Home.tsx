@@ -24,7 +24,7 @@ const Home: FC = () => {
   const { q, orderBy, startIndex, maxResults } = useSelector(selectSearch);
   const dispatch = useAppDispatch();
   const skeletons = [...new Array(maxResults)].map((_, ind) => <Skeleton key={ind} />);
-  const { items, status, error } = useSelector(selectBooks);
+  const { items, status, error, totalItems } = useSelector(selectBooks);
 
   const onClickHandler = () => {
     dispatch(setStartIndex(startIndex));
@@ -39,7 +39,7 @@ const Home: FC = () => {
   return (
     <div className="container">
       <div className={styles.totalItems}>
-        {status !== EStatusBook.PENDING && <div>Found {1} results</div>}
+        {status !== EStatusBook.PENDING && <div>Found {totalItems} results</div>}
       </div>
       <div className={styles.content_items}>
         {status === EStatusBook.PENDING
