@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setQ, setOrderBy } from '@redux/features/searchSlice';
-import { fetchBooks } from '@redux/features/booksSlice';
+import { fetchBooks } from '../../redux/features/book/asyncActions';
 import Input from '@components/Input';
 import Select from '@components/Select';
 import styles from './Header.module.scss';

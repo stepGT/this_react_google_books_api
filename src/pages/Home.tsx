@@ -1,29 +1,34 @@
 import { FC, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchBooks, selectorBooks, loadMore } from '@redux/features/booksSlice';
-import { setParams } from '@redux/features/searchSlice';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../redux/store';
+// book features
+import { fetchBooks } from '../redux/features/book/asyncActions';
+import { loadMoreSlice } from '../redux/features/book/slice';
+import { selectBooks } from '../redux/features/book/selectors';
+import { EStatusBook } from '../redux/features/book/types';
+// search features
+import { setParams } from '../redux/features/searchSlice';
+// components
 import BookItem from '@components/BookItem';
-import styles from './Home.module.scss';
 import Skeleton from '@components/BookItem/Skeleton';
 import Error from '@components/Error';
 import Button from '@components/Button';
 import LoadMore from '@components/LoadMore';
-import { fetchBooksLoadMore } from '@api/BooksService';
+// api
+import { fetchBooksLoadMore } from '../api/BooksService';
+// style
+import styles from './Home.module.scss';
 
 const Home: FC = () => {
   const { q, orderBy, startIndex, maxResults } = useSelector((state) => state.search);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const skeletons = [...new Array(maxResults)].map((_, ind) => <Skeleton key={ind} />);
-  const {
-    data: { items, totalItems },
-    status,
-    error,
-  } = useSelector(selectorBooks);
+  const { items, status, error } = useSelector(selectBooks);
 
   const onClickHandler = () => {
     dispatch(setParams({ startIndex, maxResults }));
     fetchBooksLoadMore(q, orderBy, startIndex + 1, maxResults).then((e) =>
-      dispatch(loadMore(e.items)),
+      dispatch(loadMoreSlice(e.items)),
     );
   };
   useEffect(() => {
@@ -33,10 +38,12 @@ const Home: FC = () => {
   return (
     <div className="container">
       <div className={styles.totalItems}>
-        {status !== 'pending' && <div>Found {totalItems} results</div>}
+        {status !== EStatusBook.PENDING && <div>Found {1} results</div>}
       </div>
       <div className={styles.content_items}>
-        {status === 'pending' ? skeletons : items.map((el) => <BookItem key={el.etag} {...el} />)}
+        {status === EStatusBook.PENDING
+          ? skeletons
+          : items.map((el) => <BookItem key={el.etag} {...el} />)}
       </div>
       <LoadMore>
         <Button onClickHandler={onClickHandler} text="load more" />
