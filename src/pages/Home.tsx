@@ -5,9 +5,10 @@ import { useAppDispatch } from '../redux/store';
 import { fetchBooks } from '../redux/features/book/asyncActions';
 import { loadMoreSlice } from '../redux/features/book/slice';
 import { selectBooks } from '../redux/features/book/selectors';
+import { selectSearch } from '../redux/features/search/selectors';
 import { EStatusBook } from '../redux/features/book/types';
 // search features
-import { setParams } from '../redux/features/searchSlice';
+import { setStartIndex } from '../redux/features/search/slice';
 // components
 import BookItem from '@components/BookItem';
 import Skeleton from '@components/BookItem/Skeleton';
@@ -20,13 +21,13 @@ import { fetchBooksLoadMore } from '../api/BooksService';
 import styles from './Home.module.scss';
 
 const Home: FC = () => {
-  const { q, orderBy, startIndex, maxResults } = useSelector((state) => state.search);
+  const { q, orderBy, startIndex, maxResults } = useSelector(selectSearch);
   const dispatch = useAppDispatch();
   const skeletons = [...new Array(maxResults)].map((_, ind) => <Skeleton key={ind} />);
   const { items, status, error } = useSelector(selectBooks);
 
   const onClickHandler = () => {
-    dispatch(setParams({ startIndex, maxResults }));
+    dispatch(setStartIndex(startIndex));
     fetchBooksLoadMore(q, orderBy, startIndex + 1, maxResults).then((e) =>
       dispatch(loadMoreSlice(e.items)),
     );

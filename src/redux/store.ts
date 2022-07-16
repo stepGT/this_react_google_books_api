@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import books from './features/book/slice';
-import search from './features/searchSlice';
+import search from './features/search/slice';
 import { useDispatch } from 'react-redux';
 
 export const store = configureStore({

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setQ, setOrderBy } from '@redux/features/searchSlice';
+import { setQ, setOrderBy } from '../../redux/features/search/slice';
 import { fetchBooks } from '../../redux/features/book/asyncActions';
 import Input from '@components/Input';
 import Select from '@components/Select';

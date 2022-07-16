@@ -1,6 +1,6 @@
 import { ChangeEvent, FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setQ } from '@redux/features/searchSlice';
+import { setQ } from '../../redux/features/search/slice';
 import styles from './Input.module.scss';
 
 const Input: FC = () => {

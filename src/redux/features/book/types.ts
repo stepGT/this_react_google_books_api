@@ -18,13 +18,6 @@ export type TBookItem = {
   };
 };
 
-export type TSearchParams = {
-  q: string;
-  orderBy: string;
-  startIndex: string;
-  maxResults: string;
-};
-
 export enum EStatusBook {
   PENDING = 'pending',
   FULFILLED = 'fulfilled',

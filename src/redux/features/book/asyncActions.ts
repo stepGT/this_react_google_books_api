@@ -1,8 +1,9 @@
 import axios, { AxiosError } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { TBookSlice, TSearchParams, TBookItem } from './types';
+import { TBookSlice, TBookItem } from './types';
+import { TSearchSlice } from '../search/types';
 
-export const fetchBooks = createAsyncThunk<TBookSlice, TSearchParams>(
+export const fetchBooks = createAsyncThunk<TBookSlice, TSearchSlice>(
   'books/fetchBooks',
   async (params, { rejectWithValue, fulfillWithValue }) => {
     const { q, orderBy, startIndex, maxResults } = params;
