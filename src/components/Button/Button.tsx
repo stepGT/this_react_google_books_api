@@ -4,7 +4,7 @@ import styles from './Button.module.scss';
 type ButtonProps = {
   text: string;
   disabled: boolean;
-  onClickHandler: any;
+  onClickHandler: () => void;
 };
 
 const Button: FC<ButtonProps> = ({ text, disabled = false, onClickHandler }) => {

@@ -1,12 +1,12 @@
-import { FC, useState } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setQ } from '@redux/features/searchSlice';
+import { setQ } from '../../redux/features/search/slice';
 import styles from './Input.module.scss';
 
 const Input: FC = () => {
   const [value, setValue] = useState('');
   const dispatch = useDispatch();
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
     dispatch(setQ(e.target.value));
   };
@@ -19,7 +19,7 @@ const Input: FC = () => {
         id="inputValue"
         type="text"
         value={value}
-        onChange={(e) => handleChange(e)}
+        onChange={handleChange}
       />
       <input className={styles.submit} type="submit" value="" />
     </div>
